@@ -3,7 +3,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var app = express();
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
+app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(express.static(__dirname));
 var dbUrl = 'mongodb+srv://Lakshmi:user@cluster0.chhn3.mongodb.net/<dbname>?retryWrites=true&w=majority';
 
 var Product = mongoose.model('product', {
@@ -34,7 +35,7 @@ app.post('/product/create/', async (req, res) => {
 });
 app.get('/product/get/', async (req, res) => {
     var products = {};
-    var data = await Product.find({});
+    var data = await Product.find({})
     data.forEach((value) => {
         products[value.id] = value.product;
     });

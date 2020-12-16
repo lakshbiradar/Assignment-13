@@ -16,7 +16,7 @@ class ProductForm extends Component {
             selectedOption:"In Stock"
         }
     }
-      
+    
     handleStock(changeEvent) {
         this.setState({
             selectedOption: changeEvent.target.value
